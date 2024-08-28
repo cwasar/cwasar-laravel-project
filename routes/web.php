@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [\App\Http\Controllers\Main::class, 'index']);
+
 Route::get('/posts', [\App\Http\Controllers\Posts::class, 'index']);
 Route::get('/posts/create', [\App\Http\Controllers\Posts::class, 'create']);
 Route::get('/posts/{id}', [\App\Http\Controllers\Posts::class, 'show']);

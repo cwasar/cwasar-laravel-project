@@ -23,7 +23,11 @@ class Notes extends Controller
     }
 
     public function store(Request $request) {
-        $fields = $request->all(['title', 'content']);
-        Note::create($fields);
+        $validated = $request->validate([
+            'title' => 'required|min:5|max:100',
+            'content' => 'required|min:10|max:500',
+        ]);
+        $note = Note::create($validated);
+        return redirect("/notes/{$note->id}"); // тут надо использовать именованные маршруты. я из пока не знаю
     }
 }

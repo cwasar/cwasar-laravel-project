@@ -20,8 +20,14 @@ class Posts extends Controller
 
     public function store(Request $request)
     {
-        $fields = $request->all(['title', 'content']);
-        Post::create($fields);
+        $validated = $request->validate([
+            'title' => 'required|min:5|max:100',
+            'content' => 'required|min:10|max:500',
+        ]);
+
+        dump($validated);
+        $post = Post::create($validated);
+        return redirect("/posts/{$post->id}");
     }
 
     public function show(string $id)
