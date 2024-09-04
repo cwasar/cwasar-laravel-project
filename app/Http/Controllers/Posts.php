@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\Posts\Save as SaveRequest;
 
 class Posts extends Controller
 {
@@ -18,15 +19,9 @@ class Posts extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|min:5|max:100',
-            'content' => 'required|min:10|max:500',
-        ]);
-
-        dump($validated);
-        $post = Post::create($validated);
+        $post = Post::create($request->validated());
         return redirect("/posts/{$post->id}");
     }
 
@@ -38,16 +33,21 @@ class Posts extends Controller
 
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(SaveRequest $request, string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->update($request->validated());
+        return redirect(route('posts.show', [$post->id]));
+
     }
 
     public function destroy(string $id)
     {
-        //
+        Post::destroy($id);
+        return redirect(route('posts.index'));
     }
 }

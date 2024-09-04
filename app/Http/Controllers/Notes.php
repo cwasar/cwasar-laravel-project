@@ -28,6 +28,30 @@ class Notes extends Controller
             'content' => 'required|min:10|max:500',
         ]);
         $note = Note::create($validated);
-        return redirect("/notes/{$note->id}"); // тут надо использовать именованные маршруты. я из пока не знаю
+        return redirect(route('notes.show', [$note->id])); // тут надо использовать именованные маршруты. я из пока не знаю
+    }
+
+    public function edit($id) {
+        $note = Note::findOrFail($id);
+        return view('notes/edit', compact('note'));
+    }
+
+    public function update(Request $request, $id){
+
+        $note = Note::findOrFail($id);
+
+        $validated = $request->validate([
+            'title' => 'required|min:5|max:100',
+            'content' => 'required|min:10|max:500',
+        ]);
+
+        $note->update($validated);
+
+        return redirect(route('notes.show', [$note->id]));
+    }
+
+    public function destroy($id) {
+        Note::destroy($id);
+        return redirect(route('notes.index'));
     }
 }
