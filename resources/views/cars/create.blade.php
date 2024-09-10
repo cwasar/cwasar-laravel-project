@@ -5,6 +5,7 @@
         <x-input label="Модель" name="model" />
         <x-input label="Год" name="year" />
         <x-input label="Пробег" name="mileage" />
+        <x-input label="Ссылка на фото" name="img" />
         <x-select name="transmission" :values="$transmission"></x-select>
         <div class="mt-3">
             <button class="btn btn-primary">Добавить</button>
