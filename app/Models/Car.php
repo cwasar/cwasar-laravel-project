@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 
 class Car extends Model
 {
     use HasFactory;
-    protected $fillable = ['brand', 'model', 'year', 'mileage', 'transmission', 'img'];
+    use SoftDeletes;
+    protected $fillable = ['brand', 'model', 'year', 'mileage', 'transmission', 'img', 'deleted_at'];
+
 }

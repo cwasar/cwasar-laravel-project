@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [\App\Http\Controllers\Main::class, 'index']);
+Route::get('/', [\App\Http\Controllers\Main::class, 'index'])->name('main.index');
 
 Route::get('/posts', [\App\Http\Controllers\Posts::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [\App\Http\Controllers\Posts::class, 'create'])->name('posts.create');
@@ -31,4 +31,8 @@ Route::put('/cars/{id}', [\App\Http\Controllers\Cars::class, 'update'])->name('c
 Route::get('/cars/{id}/edit', [\App\Http\Controllers\Cars::class, 'edit'])->name('cars.edit');
 Route::get('/cars/{id}', [\App\Http\Controllers\Cars::class, 'show'])->name('cars.show');
 Route::delete('/cars/{id}/destroy', [\App\Http\Controllers\Cars::class, 'destroy'])->name('cars.destroy');
+
+Route::get('/trash', [\App\Http\Controllers\TrashCars::class, 'index'])->name('trash.index');
+Route::put('/trash/{car}/restore', [\App\Http\Controllers\TrashCars::class, 'restore'])->name('trash.restore');
+Route::delete('cars/{car}/forceDelete', [\App\Http\Controllers\TrashCars::class, 'forceDelete'])->name('trash.forceDelete');
 
