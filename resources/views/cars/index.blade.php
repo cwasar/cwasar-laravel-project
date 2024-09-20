@@ -1,6 +1,9 @@
 @php
     $curPage = Request::path();
     $curPage = explode('/', $curPage)[0];
+
+    $restoredCar = session('restored');
+
 @endphp
 <x-layout.main title="Машины">
     @if(session('notification'))
@@ -10,17 +13,19 @@
     @endif
     <a href="{{ route('cars.create') }}">Добавить машину</a>
     <hr>
+
+        {{ !empty($restored) ? $restored : '' }}
     @foreach($cars as $car)
-        <div class="row p-2  {{ $curPage == 'trash' ? 'bg-info bg-gradient' : '' }} ">
+        <div class="row p-2 {{ !empty($restoredCar) && $restoredCar == $car->id ? 'bg-success' : '' }}  {{ $curPage == 'trash' ? 'bg-info bg-gradient' : '' }} ">
             <div class="col-2">
                 <img width="150" height="150" class="img-fluid" src="{{ $car->img }}" alt="">
             </div>
             <div class="col-10">
                 <div>
                     @if($curPage == 'cars')
-                    <a href="{{ route('cars.show', [$car->id]) }}">Бренд: {{$car->brand}}</a>
+                    <a href="{{ route('cars.show', [$car->id]) }}">Бренд: {{ $brands[$car->brand_id] }} -- Страна: {{ $car->brand->country->title }}</a>
                     @else
-                        Бренд: {{$car->brand}}
+                        Бренд: {{ $car->brand->title }} -- Страна: {{ $car->brand->country->title }}
                     @endif
                 </div>
                 <div>

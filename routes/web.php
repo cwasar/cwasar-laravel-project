@@ -32,7 +32,11 @@ Route::get('/cars/{id}/edit', [\App\Http\Controllers\Cars::class, 'edit'])->name
 Route::get('/cars/{id}', [\App\Http\Controllers\Cars::class, 'show'])->name('cars.show');
 Route::delete('/cars/{id}/destroy', [\App\Http\Controllers\Cars::class, 'destroy'])->name('cars.destroy');
 
-Route::get('/trash', [\App\Http\Controllers\TrashCars::class, 'index'])->name('trash.index');
-Route::put('/trash/{car}/restore', [\App\Http\Controllers\TrashCars::class, 'restore'])->name('trash.restore');
-Route::delete('cars/{car}/forceDelete', [\App\Http\Controllers\TrashCars::class, 'forceDelete'])->name('trash.forceDelete');
+Route::get('/trash', [\App\Http\Controllers\Cars::class, 'trash'])->name('trash.index');
+Route::put('/trash/{car}/restore', [\App\Http\Controllers\Cars::class, 'restore'])->name('trash.restore');
+Route::delete('cars/{car}/forceDelete', [\App\Http\Controllers\Cars::class, 'forceDelete'])->name('trash.forceDelete');
 
+
+Route::resource('brands', \App\Http\Controllers\Brands::class);
+
+Route::resource('tags', \App\Http\Controllers\Tags::class);

@@ -1,7 +1,7 @@
 <x-layout.main title="" h1="">
     @if(session('notification'))
         <div class="alert alert-primary" role="alert">
-        {{ $car->brand }} {{ session('notification') }}
+            {{ session('notification') }}
         </div>
    @endif
 <div class="row">
@@ -17,7 +17,7 @@
 </div>
 <div class="col-6">
 
-<div>Бренд: {{ $car->brand }}</div>
+<div>Бренд: {{ $car->brand->title }}</div>
 <div>Модель: {{ $car->model }}</div>
 <div>Год: {{ $car->year }}</div>
 <div>Пробег: {{ $car->mileage }}</div>

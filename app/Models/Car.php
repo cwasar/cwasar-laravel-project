@@ -12,6 +12,15 @@ class Car extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['brand', 'model', 'year', 'mileage', 'transmission', 'img', 'deleted_at'];
+    protected $guarded = [];
+
+    public function brand() {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
+
 
 }

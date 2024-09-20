@@ -1,8 +1,8 @@
-<x-layout.main title="Редактировать {{ $car->brand }} - {{ $car->model }}" h1="Редактировать {{ $car->brand }} - {{ $car->model }}">
+<x-layout.main title="Редактировать {{ $brands[$car->brand_id] }} - {{ $car->model }}" h1="Редактировать {{ $car->brand->title }} - {{ $car->model }}">
     <form action="{{ route('cars.update', [$car->id]) }}" method="post">
         @csrf
         @method('PUT')
-        <x-input name="brand" label="Бренд" defaultValue="{{ $car->brand }}"/>
+        <x-select name="brand_id" defaultValue="{{ $car->brand_id }}" :values="$brands"></x-select>
         <x-input name="model" label="Модель" defaultValue="{{ $car->model }}"/>
         <x-input name="year" label="Год" defaultValue="{{ $car->year }}"/>
         <x-input name="mileage" label="Пробег" defaultValue="{{ $car->mileage }}"/>

@@ -2,14 +2,15 @@
     'defaultValue' => 'Выбрать',
     'values' => [],
     'name',
-    'label' => 'Выбрать'
+    'label' => 'Выбрать',
+    'multiple' => ''
 ])
 
 <div class="col-2">
     <label for="">{{ $label }}</label><br>
-    <select class="" aria-label="" name="{{ $name }}">
+    <select class="" aria-label="" name="{{ $name }}" {{ $multiple }}>
         @if($defaultValue === 'Выбрать')
-            <option value="none" selected>Выбрать</option>
+            <option value="none">Выбрать</option>
         @endif
         @foreach($values as $key => $value)
             @if($defaultValue == $key)

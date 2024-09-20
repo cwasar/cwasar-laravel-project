@@ -19,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+      /*  \Illuminate\Support\Facades\DB::beforeExecuting(function ($query, $params){
+           echo '<div>';
+           var_dump($query);
+           var_dump($params);
+           echo '<hr>';
+           echo '</div>';
+        });*/
     }
 }
