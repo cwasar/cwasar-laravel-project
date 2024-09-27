@@ -17,4 +17,6 @@
         </form>
     </div>
 </div>
+        <x-comments.view :model="$brand" />
+        <x-comments.create :model="$brand" :id="$brand->id" />
 </x-layout.main>

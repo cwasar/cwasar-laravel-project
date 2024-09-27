@@ -27,16 +27,18 @@ Route::post('/notes', [\App\Http\Controllers\Notes::class, 'store']);
 Route::get('/cars', [\App\Http\Controllers\Cars::class, 'index'])->name('cars.index');
 Route::get('/cars/create', [\App\Http\Controllers\Cars::class, 'create'])->name('cars.create');
 Route::post('/cars', [\App\Http\Controllers\Cars::class, 'store'])->name('cars.store');
-Route::put('/cars/{id}', [\App\Http\Controllers\Cars::class, 'update'])->name('cars.update');
-Route::get('/cars/{id}/edit', [\App\Http\Controllers\Cars::class, 'edit'])->name('cars.edit');
-Route::get('/cars/{id}', [\App\Http\Controllers\Cars::class, 'show'])->name('cars.show');
-Route::delete('/cars/{id}/destroy', [\App\Http\Controllers\Cars::class, 'destroy'])->name('cars.destroy');
+Route::put('/cars/{car}', [\App\Http\Controllers\Cars::class, 'update'])->name('cars.update');
+Route::get('/cars/{car}/edit', [\App\Http\Controllers\Cars::class, 'edit'])->name('cars.edit');
+Route::get('/cars/{car}', [\App\Http\Controllers\Cars::class, 'show'])->name('cars.show');
+Route::delete('/cars/{car}/destroy', [\App\Http\Controllers\Cars::class, 'destroy'])->name('cars.destroy');
 
 Route::get('/trash', [\App\Http\Controllers\Cars::class, 'trash'])->name('trash.index');
-Route::put('/trash/{car}/restore', [\App\Http\Controllers\Cars::class, 'restore'])->name('trash.restore');
-Route::delete('cars/{car}/forceDelete', [\App\Http\Controllers\Cars::class, 'forceDelete'])->name('trash.forceDelete');
+Route::put('/trash/{id}/restore', [\App\Http\Controllers\Cars::class, 'restore'])->name('trash.restore');
+Route::delete('cars/{id}/forceDelete', [\App\Http\Controllers\Cars::class, 'forceDelete'])->name('trash.forceDelete');
 
 
 Route::resource('brands', \App\Http\Controllers\Brands::class);
 
 Route::resource('tags', \App\Http\Controllers\Tags::class);
+
+Route::post('/comments/comment', [\App\Http\Controllers\Comments::class, 'store'])->name('comments.store');

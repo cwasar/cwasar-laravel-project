@@ -8,6 +8,7 @@
         <x-input name="mileage" label="Пробег" defaultValue="{{ $car->mileage }}"/>
         <x-input name="img" label="Ссылка на фото" defaultValue="{{ $car->img }}"/>
         <x-select name="transmission" defaultValue="{{ $car->transmission }}" :values="$transmission"></x-select>
+        <x-select name="tags[]" :values="$tags" label="Теги" multiple="multiple"></x-select>
         <div class="mt-3">
             <button class="btn btn-primary">Изменить</button>
         </div>
